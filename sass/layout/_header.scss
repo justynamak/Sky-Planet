@@ -1,0 +1,52 @@
+.header{
+	height: auto;
+	
+	@media all and #{$mq-medium}{
+		background-color: #f4f4f4;	
+	}
+	
+	
+	&__top{
+		height: auto;
+		display: grid;
+		grid-template-columns: [first]1fr[line2]4fr[line3]auto[last];
+		align-items: center;
+		grid-gap: 2%;
+	}
+	&__heading{
+		grid-column: line2/line3;
+		justify-self: center;
+		
+		@media all and #{$mq-medium}{
+			grid-column: first/line2;
+			justify-self: start;
+			order:0;
+		}
+		
+	}
+	&__bag{
+		grid-column: line3/last;
+		justify-self: end;
+		order:2;
+		position: relative;	
+		width: 2.2em;
+	}
+	&__bag-icon{
+		width: 100%;
+	}
+	
+	&__count{
+		display: none;
+		width: 1.3em;
+		height: 1.3em;
+		background-color: #000;
+		border:1px solid #000;
+		border-radius: 50%;
+		position: absolute;
+		bottom: 0;
+		right: -7%;
+		color: #fff;
+		text-align: center;
+		font-size: 0.8em;
+	}
+}

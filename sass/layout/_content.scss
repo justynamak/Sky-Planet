@@ -1,0 +1,57 @@
+//MAIN
+
+.main{
+	height: auto;
+	padding-left: 8%;
+	
+	@media all and #{$mq-medium}{
+		flex:3;	
+	}
+	&__sort{
+		display: none;
+		
+		@media all and #{$mq-medium}{
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	&__sort-list{
+		cursor: pointer;
+	}
+	&__product-1{
+		grid-area: product-1;
+	}
+	&__product-2{
+		grid-area: product-2;
+	}
+	&__product-3{
+		grid-area: product-3;
+	}
+	&__product-4{
+		grid-area: product-4;
+	}
+	&__product-5{
+		grid-area: product-5;
+	}
+	&__product-6{
+		grid-area: product-6;
+	}
+	&__product-7{
+		grid-area: product-7;
+	}
+	&__grid{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(4,auto);
+		grid-column-gap: 5%;
+		grid-row-gap: 3em;
+		grid-template-areas: 
+			"product-1 product-2" 
+			"product-3 product-3" 
+			"product-4 product-5" 
+			"product-6 product-7";
+		margin-top:2em;
+	}
+	
+	
+}
