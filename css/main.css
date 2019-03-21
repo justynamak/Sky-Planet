@@ -65,10 +65,31 @@ a {
 
 /*typography*/
 body {
-  font-size: 1.125em;
+  font-size: 1em;
   line-height: 1.5;
   font-family: "Padauk", sans-serif;
   color: #494949;
+}
+@media (min-width: 64em) {
+  body {
+    font-size: 1.2em;
+    line-height: 1.8;
+  }
+}
+@media (min-width: 85.375em) {
+  body {
+    font-size: 1.3em;
+  }
+}
+@media (min-width: 120em) {
+  body {
+    font-size: 1.4em;
+  }
+}
+@media (min-width: 160em) {
+  body {
+    font-size: 1.6em;
+  }
 }
 
 .heading {
@@ -814,13 +835,13 @@ body {
 /*content*/
 .main {
   height: auto;
-  padding-left: 8%;
 }
 @media all and (min-width: 64em) {
   .main {
     -webkit-box-flex: 3;
         -ms-flex: 3;
             flex: 3;
+    padding-left: 8%;
   }
 }
 .main__sort {
