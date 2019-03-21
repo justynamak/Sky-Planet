@@ -20,7 +20,7 @@ $mq-xxlarge: "(min-width: #{$bp-xxlarge})";
 $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
 // Font-Size
-$base-font-size: 1.125em;//18px
+$base-font-size: 1em;
 
 // Line-Height
 $base-line-height: 1.5;
@@ -32,6 +32,22 @@ body {
 	font-family: $base-font-family;
 	color:$dark-gray;
 	
+	@media #{$mq-medium} {
+		font-size: $base-font-size*1.2;
+		line-height: $base-line-height*1.2;
+  }
+
+  @media #{$mq-large} {
+    font-size: $base-font-size*1.3;
+  }
+
+  @media #{$mq-xlarge} {
+    font-size: $base-font-size*1.4;
+  }
+
+  @media #{$mq-xxlarge} {
+    font-size: $base-font-size*1.6;
+  }
 }
 
 .heading{
