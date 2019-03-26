@@ -3,15 +3,13 @@
 	height: 70vh;	
 	width: 100%;
 	background-color: $light-gray;
+	min-height: 350px;
 	
-	&__content{		
-//		background-image: url(../assets/slide1.jpg);
-//		background-repeat: no-repeat;
-//		background-position: 30%;
-//		background-size: contain;
-//		height: 100%;
-//		width: 100%;
-		display: flex;	
+	&__content{	
+		display: flex;
+		min-height: 400px;
+		height: 70vh;
+		position: relative;
 
 		
 	}
@@ -19,13 +17,17 @@
 		background-image: url(../assets/slide1.jpg);
 		background-repeat: no-repeat;
 		background-position: 30%;
-		background-size: contain;
+		background-size: cover;
 		height: 100%;
 		width: 100%;
 		position: absolute;
 		left:0;
 		top:0;
 		opacity: 0.4;
+		
+		@media all and #{$mq-medium}{
+			background-size: contain;
+		}
 		
 	}
 	&__effect{
@@ -56,15 +58,20 @@
 		transform: translateX(-50%);
 	}
 	&__dot{		
-		width:1em;
-		height: 1em;
+		width:2em;
+		height: 2em;
 		border: 3px solid $active-dot;
 		border-radius: 50%;
 		margin: 0 0.5em;
 		cursor:pointer;
+		@media all and #{$mq-medium}{
+			width:1em;
+			height: 1em;
+		}
 		
 		@media all and #{$mq-medium}{
 			display: none;
+				
 		}
 		&--active{
 			background-color: $active-dot;

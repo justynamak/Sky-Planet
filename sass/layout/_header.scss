@@ -1,8 +1,10 @@
-.header{
+.header{	
 	height: auto;
+	
 	
 	@media all and #{$mq-medium}{
 		background-color: #f4f4f4;	
+		height: 60vh;
 	}
 	
 	
@@ -12,7 +14,7 @@
 		grid-template-columns: [first]1fr[line2]4fr[line3]auto[last];
 		align-items: center;
 		grid-gap: 2%;
-	}
+			}
 	&__heading{
 		grid-column: line2/line3;
 		justify-self: center;

@@ -2,10 +2,10 @@
 
 .main{
 	height: auto;
-	padding-left: 8%;
 	
 	@media all and #{$mq-medium}{
 		flex:3;	
+		padding-left: 8%;
 	}
 	&__sort{
 		display: none;
@@ -41,16 +41,27 @@
 	}
 	&__grid{
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		grid-template-rows: repeat(4,auto);
 		grid-column-gap: 5%;
 		grid-row-gap: 3em;
+		grid-template-areas: 
+			"product-1" 
+			"product-2"
+			"product-3" 
+			"product-4" 
+			"product-5"
+			"product-6"
+			 "product-7";
+		margin-top:2em;
+		@media all and #{$mq-small}{
+		grid-template-columns: 1fr 1fr;
 		grid-template-areas: 
 			"product-1 product-2" 
 			"product-3 product-3" 
 			"product-4 product-5" 
 			"product-6 product-7";
-		margin-top:2em;
+		}
 	}
 	
 	
