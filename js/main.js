@@ -860,7 +860,7 @@ class Ajax {
 	}
 
 }
-const ajaxProduct = new Ajax("http://makuchdesign.pl/justyna/sky_planet/ajax.php", [], loadAjaxProduct);
+const ajaxProduct = new Ajax("https://makuchdesign.pl/justyna/sky_planet/ajax.php", [], loadAjaxProduct);
 
 
 
