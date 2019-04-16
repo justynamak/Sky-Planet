@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">	
 <head>
 	<meta charset="UTF-8">
 	<title>Sky Planet</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=PT+Mono|Padauk:400,700|Playfair+Display:400i" rel="stylesheet"> 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
@@ -36,9 +35,16 @@
 					</ul>
 				</nav>
 				<h1 class="heading main-heading header__heading">Maison</h1>
-				<aside class="header__bag">
-					<img class="header__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">
-					<div class="header__count"></div>
+				<aside class="header__cart cart popup-show">
+					<img class="cart__icon" src="assets/iconmonstr-shopping-bag-4.svg">
+					<div class="cart__count"></div>
+					<div class="cart__dropdown popup">
+					<img class="popup__close" src="assets/icon-x.svg">
+					<div class="cart__container">
+						<p class="cart__dropdown-text">Your cart is empty.</p>
+						<button class="btn cart__btn">Keep shopping</button>
+					</div>
+					</div>
 				</aside>
 			</div>
 		</div>
@@ -67,9 +73,9 @@
 			<h2 class="hide">Sidebar</h2>
 			
 			<section class="sidebar__section categories">
-				<h3 class="heading medium-size sidebar__heading">Categories <span class="sidebar__icon"><i class="fas fa-caret-down fa-sm"></i></span></h3>	
-				<ul class="categories__list sidebar__list">
-					<li><img class="sidebar__close" src="assets/icon-x.svg"></li>
+				<h3 class="heading medium-size sidebar__heading popup-show">Categories <span class="sidebar__icon"><i class="fas fa-caret-down fa-sm"></i></span></h3>	
+				<ul class="popup">
+					<li><img class="popup__close" src="assets/icon-x.svg"></li>
 					<li class="sidebar__item">
 						<a href="#">All products<span class="sidebar__number">27</span> </a>
 					</li>
@@ -94,10 +100,10 @@
 				</ul>			
 			</section>
 			
-			<section class="filter sidebar__filter sidebar__section">
-				<h3 class="heading medium-size sidebar__heading"><span class="sidebar__icon"><i class="fas fa-filter fa-xs"></i></span> Filter by</h3>
-				<ul class="sidebar__list filter__list">
-				<li><img class="sidebar__close" src="assets/icon-x.svg"></li>
+			<section class="filter sidebar__section">
+				<h3 class="heading medium-size sidebar__heading popup-show"><span class="sidebar__icon"><i class="fas fa-filter fa-xs"></i></span> Filter by</h3>
+				<ul class="popup">
+				<li><img class="popup__close" src="assets/icon-x.svg"></li>
 					<li class="sidebar__subsection"><h4 class="heading small-size">Price</h4>
 		
 				<input type="text" class="js-range-slider" name="my_range" value="" />
@@ -160,14 +166,14 @@
 			</aside>
 		
 			<div class="main__grid">
-				<article class="product main__product-1">
+				<article id="clone" class="product main__product-{count}" style="display: none;" data-id="{id}">
 					<div class="product__bg">
-						<img class="product__img" src="./assets/bottle.jpg" srcset="./assets/bottle-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/bottle-hover-2x.jpg">
+						<img class="product__img" src="./assets/{image}.jpg" srcset="./assets/{image}-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
+						<img class="product__img product__img-hover" src="./assets/{image}-hover.jpg">
 					</div>
 					<div class="product__info">
-						<h3 class="heading small-size">Bottle Humidifier</h3>
-						<p class="small-size product__price">$69.00</p>
+						<h3 class="heading small-size">{name}</h3>
+						<p class="small-size product__price">{price}$</p>
 					</div>
 						<aside>
 							<div class="product__like">
@@ -178,109 +184,7 @@
 							</p>
 						</aside>
 					
-				</article>
-						
-				<article class="product main__product-2">
-					<div class="product__bg">
-						<img class="product__img" src="./assets/teapot.jpg" srcset="./assets/teapot-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/teapot-hover-2x.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Teapot</h3>
-						<p class="small-size product__price">$159.00</p>
-					</div>
-					<aside>
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
-						
-				<article class="product main__product-3">
-					<div class="product__bg">
-						<img class="product__img product__img--big" src="./assets/align-daybed.jpg">
-						<img class="product__img product__img--big product__img-hover" src="./assets/align-daybed-hover.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Align Daybed</h3>
-						<p class="product__price">$1,999.00</p>
-					</div>
-					<aside>						
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
-						
-				<article class="product main__product-4">
-					<div class="product__bg">
-						<img class="product__img" src="./assets/scisors.jpg" srcset="./assets/scisors-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/scisors-hover-2x.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Flower Scissors</h3>
-						<p class="product__price">$59.00</p>
-					</div>
-					<aside>
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
-						
-				<article class="product main__product-5">		
-					<div class="product__bg">
-						<img class="product__img" src="./assets/grey-watch.jpg" srcset="./assets/gray-watch-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/gray-watch-hover-2x.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Gray Watch</h3>
-						<p class="product__price">$349.00</p>
-					</div>
-					<aside>
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
-						
-				<article class="product main__product-6">
-					<div class="product__bg">
-						<img class="product__img" src="./assets/sweeper.jpg" srcset="./assets/sweeper-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/sweeper-hover-2x.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Sweeper and Funnel</h3>
-						<p class="product__price">$55.00</p>
-					</div>
-					<aside>
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
-				
-					<article class="product main__product-7">
-					<div class="product__bg">
-						<img class="product__img" src="./assets/bulb.jpg" srcset="./assets/bulb-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/bulb-hover-2x.jpg">
-					</div>
-					<div class="product__info">
-						<h3 class="heading small-size">Bulb</h3>
-						<p class="product__price">$55.00</p>
-					</div>
-					<aside>
-						<div class="product__like">
-							<i class="far fa-heart"></i>
-						</div>
-						<p class="product__bag"><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg">Add to Cart</p>
-					</aside>		
-				</article>
+				</article>		
 			</div>
 			<nav class="pagination">
 				<ul class="pagination__list">
