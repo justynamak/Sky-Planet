@@ -18,4 +18,4 @@
 <li>Php</li>
 </ul>
 
-<a href="https://justynamak.github.io/Sky-Planet/">DEMO</a>
+<a href="https://justynamak.github.io/Sky-Planet/dist">DEMO</a>
