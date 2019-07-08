@@ -1,0 +1,32 @@
+.header{
+	
+	@media all and #{$mq-medium}{
+		background-color: #f4f4f4;	
+	}
+	
+	
+	&__top{
+		height: auto;
+		display: grid;
+		grid-template-columns: [first]1fr[line2]4fr[line3]auto[last];
+		align-items: center;
+		grid-gap: 2%;
+	}
+	&__heading{
+		grid-column: line2/line3;
+		justify-self: center;
+		
+		@media all and #{$mq-medium}{
+			grid-column: first/line2;
+			justify-self: start;
+			order:0;
+		}
+		
+	}
+	&__cart{
+		grid-column: line3/last;
+		justify-self: end;
+		order:2;			
+	}
+
+}
