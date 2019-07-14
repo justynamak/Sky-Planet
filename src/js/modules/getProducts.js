@@ -41,6 +41,5 @@ export default function(config) {
       paginator.createPagination(config);
       return arr;
     })
-    .then(arr => console.log(collection))
     .catch(err => console.log(err));
 }
