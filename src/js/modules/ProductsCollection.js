@@ -128,8 +128,7 @@ class ProductsCollection {
       currentProduct
         .getSelectorInPageBtn()
         .classList.add("product__bag--active");
-      currentProduct.getSelectorInPageBtn().innerHTML = "Added to Cart";
-      console.log(this.mainCart);
+      currentProduct.getSelectorInPageBtn().innerHTML = "Added to Cart";     
       this.mainCart.placeInCart(currentProduct);
     }
   }
