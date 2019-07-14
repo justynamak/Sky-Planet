@@ -53,17 +53,13 @@ class Cart {
       this.removeFromCart.bind(this)
     );
   }
-  handleUnregisterRemoveFromCart() {
-    console.log("usuwany");
-  }
   calculateThePrice() {
     const money = this.products.reduce((productA, productB) => {
       return productA + productB.getPrice();
     }, 0);
     this.moneyToPay = money;
   }
-  showMoneyToPay() {
-    console.log(this);
+  showMoneyToPay() {   
     this.toPaySelector.innerHTML = `${this.moneyToPay}$`;
   }
   showCountProducts() {
