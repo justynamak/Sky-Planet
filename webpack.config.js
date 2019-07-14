@@ -10,6 +10,7 @@ module.exports = {
   mode: "production",
   entry: "./src/js/index.js",
   watch: true,
+  devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"

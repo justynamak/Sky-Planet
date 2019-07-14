@@ -12,16 +12,81 @@ class Product {
     this.selectorInPage;
     this.selectorInPageBtn;
     this.selectorInPageFav;
+    this.temporaryImage = "photo";
 
     this.generateHtml();
   }
+  getId() {
+    return this.id;
+  }
+  getName() {
+    return this.name;
+  }
+  getPrice() {
+    return this.price;
+  }
+  getImage() {
+    return this.image;
+  }
+  getTemporaryImage() {
+    return this.temporaryImage;
+  }
+  getHover() {
+    return this.hover;
+  }
+  getFavourite() {
+    return this.favourite;
+  }
+  getAddedToCart() {
+    return this.addedToCart;
+  }
+  getSelectorInPage() {
+    return this.selectorInPage;
+  }
+  getSelectorInPageBtn() {
+    return this.selectorInPageBtn;
+  }
+  getSelectorInPageFav() {
+    return this.selectorInPageFav;
+  }
+  getSelectorImgHover() {
+    return this.selectorImgHover;
+  }
+  setHover(val) {
+    this.hover = val;
+  }
+  setAddedToFavourites(val) {
+    this.favourite = val;
+  }
+  setAddedToCart(val) {
+    this.addedToCart = val;
+  }
 
-  replaceStringInHtml(strings, cloneReplace) {
+  setSelectors() {
+    this.selectorInPage = document.querySelector(
+      `.main__product-${this.number}`
+    );
+    this.selectorInPageBtn = document.querySelector(
+      `.main__product-${this.number} .product__bag`
+    );
+    this.selectorInPageFav = document.querySelector(
+      `.main__product-${this.number} .product__like`
+    );
+    this.selectorImgHover = document.querySelector(
+      `.main__product-${this.number} .product__img-hover`
+    );
+  }
+
+  replaceStringInHtml(strings, cloneReplace, temporaryImage) {
     let cloneRep = cloneReplace;
     let repValue;
 
     strings.map(string => {
-      let repValue = Object.getOwnPropertyDescriptor(this, string).value;
+      let repValue =
+        string === "image" && temporaryImage
+          ? this.temporaryImage
+          : Object.getOwnPropertyDescriptor(this, string).value;
+
       cloneRep = cloneRep.replace(`{${string}}`, repValue);
     });
     return cloneRep;
@@ -43,8 +108,14 @@ class Product {
       "image",
       "image"
     ];
+    const temporaryImage = this.id < 8 ? false : true;
 
-    cloneReplace = this.replaceStringInHtml.call(this, strings, cloneReplace);
+    cloneReplace = this.replaceStringInHtml.call(
+      this,
+      strings,
+      cloneReplace,
+      temporaryImage
+    );
     const insert = document.createElement("article");
 
     mainGrid.appendChild(insert);
@@ -60,13 +131,11 @@ class Product {
     product3Img.forEach(img => img.classList.add("product__img--big"));
     this.big = true;
   }
-  setSelectors() {
-    this.selectorInPage = document.querySelector(
-      `.main__product-${this.number}`
-    );
-    this.selectorInPageBtn = this.selectorInPage.querySelector(".product__bag");
-    this.selectorInPageFav = this.selectorInPage.querySelector(
-      ".product__like"
+  removeAddedToCartInHtml() {
+    const classess = ["active", "product__bag--active"];
+
+    classess.forEach(name =>
+      this.getSelectorInPageBtn().classList.remove(`${name}`)
     );
   }
 }

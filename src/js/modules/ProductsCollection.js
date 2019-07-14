@@ -1,91 +1,40 @@
 import { WindowSize } from "./WindowSize";
+import { Cart } from "./Cart";
+import { Product } from "./Product";
 
 class ProductsCollection {
-  constructor() {
+  constructor(mainCart) {
     this.products = [];
-
     this.productsSelector = null;
     this.bagBtnsSelector = null;
     this.likesSelector = null;
+    this.mainCart = mainCart;
 
     this.windowSize = new WindowSize();
     this.handleAddToCart();
 
-    window.addEventListener("resize", this.showAddedElements.bind(this));
+    window.addEventListener("resize", this.showAddedToCart.bind(this));
+    // window.addEventListener("resize", this.showAddedToFavourites.bind(this));
   }
 
-  addProduct(product) {
-    this.products.push(product);
+  getProducts() {
+    return this.products;
   }
-  getProductsSelectors() {
+
+  setProductsSelectors() {
     this.productsSelector = [
       ...document.querySelectorAll(".product:not(#clone)")
     ];
     this.likesSelector = [...document.querySelectorAll(".product__like")];
     this.bagBtnsSelector = [...document.querySelectorAll(".product__bag")];
+
+    this.handleMouseEvent();
+    this.handleAddToFavourites();
+    this.handleAddToCart();
   }
 
-  getAddedToCart() {
-    return this.products.filter(product => product.addedToCart);
-  }
-  getNotAddedToCart() {
-    return this.products.filter(product => !product.addedToCart);
-  }
-  getAddedToFavourites() {
-    return this.products.filter(product => product.favourite);
-  }
-  getProducts() {
-    return this.products;
-  }
   setProducts(newArr) {
     this.products = newArr;
-    return this.products;
-  }
-  setAddedToFavourites(id) {
-    this.products.forEach(product => {
-      if (product.id === id) {
-        product.favourite = true;
-      }
-    });
-  }
-  setAddedToCart(id) {
-    this.products.forEach(product => {
-      if (product.id === id) {
-        product.addedToCart = true;
-      }
-    });
-  }
-  showAddedElements() {
-    const addedToCart = this.getAddedToCart();
-    const addedToFav = this.getAddedToFavourites();
-
-    addedToCart.forEach(product =>
-      product.selectorInPageBtn.classList.add("active")
-    );
-    addedToFav.forEach(product =>
-      product.selectorInPageFav.classList.add("active")
-    );
-  }
-  removeAddedToCartInHtml() {
-    const classess = ["active", "product__bag--active"];
-    const notAdded = this.getNotAddedToCart();
-    notAdded.forEach(product =>
-      product.selectorInPageBtn.classList.remove(...classess)
-    );
-  }
-  removeAddedToFavourites(id) {
-    this.products.forEach(product => {
-      if (product.id === id) {
-        product.favourite = false;
-      }
-    });
-  }
-  removeAddedToCart(id) {
-    this.products.forEach(product => {
-      if (product.id === id) {
-        product.addedToCart = false;
-      }
-    });
   }
 
   handleMouseEvent() {
@@ -102,39 +51,31 @@ class ProductsCollection {
         like.addEventListener("click", this.addToFavourites.bind(this));
       });
   }
-  handleAddToCart(mainCart) {
+  handleAddToCart() {
     if (this.bagBtnsSelector !== null) {
       this.bagBtnsSelector.forEach(btn => {
-        btn.addEventListener("click", e => this.addToCart(e, mainCart));
+        btn.addEventListener("click", e => this.addToCart(e));
       });
     }
   }
   findProductById(id) {
-    return this.products.find(product => product.id === id);
+    return this.products.find(product => product.getId() === id);
   }
   mouseOver(e) {
     const productId = parseFloat(e.currentTarget.dataset.id);
     const currentProduct = this.findProductById(productId);
 
     if (!this.windowSize.checkIfMobile()) {
-      const like = e.currentTarget.querySelector(".product__like");
-      const bagBtn = e.currentTarget.querySelector(".product__bag");
-
-      if (!currentProduct.addedToCart) {
-        e.currentTarget
-          .querySelector(".product__img-hover")
+      if (!currentProduct.getAddedToCart()) {
+        currentProduct
+          .getSelectorImgHover()
           .classList.add("product__img-hover--active");
-        bagBtn.classList.add("active");
+        currentProduct.getSelectorInPageBtn().classList.add("active");
       }
-      if (!currentProduct.favourite) {
-        like.classList.add("active");
+      if (!currentProduct.getFavourite()) {
+        currentProduct.getSelectorInPageFav().classList.add("active");
       }
-      this.products.forEach(product => {
-        if (product.id === productId) {
-          product.hover = true;
-        }
-        return true;
-      });
+      currentProduct.setHover(true);
     } else return;
   }
   mouseLeave(e) {
@@ -142,19 +83,17 @@ class ProductsCollection {
     const currentProduct = this.findProductById(productId);
 
     if (!this.windowSize.checkIfMobile()) {
-      const like = e.currentTarget.querySelector(".product__like");
-      const btnBag = e.currentTarget.querySelector(".product__bag");
-
-      if (!currentProduct.favourite) {
-        like.classList.remove("active");
+      if (!currentProduct.getFavourite()) {
+        currentProduct.getSelectorInPageFav().classList.remove("active");
       }
-      e.currentTarget
-        .querySelector(".product__img-hover")
+      currentProduct
+        .getSelectorImgHover()
         .classList.remove("product__img-hover--active");
 
-      if (!currentProduct.addedToCart) {
-        btnBag.classList.remove("active");
+      if (!currentProduct.getAddedToCart()) {
+        currentProduct.getSelectorInPageBtn().classList.remove("active");
       }
+      currentProduct.setHover(false);
     } else return;
   }
 
@@ -162,30 +101,55 @@ class ProductsCollection {
     const productId = parseFloat(e.target.closest(".product").dataset.id);
     const currentProduct = this.findProductById(productId);
 
-    if (currentProduct.favourite) {
-      e.currentTarget.innerHTML = '<i class="far fa-heart"></i>';
-      e.currentTarget.classList.remove("product__like--active");
-      this.removeAddedToFavourites(productId);
-    } else if (!currentProduct.favourite) {
-      e.currentTarget.innerHTML = '<i class="fas fa-heart"></i>';
-      e.currentTarget.classList.add("product__like--active");
-      this.setAddedToFavourites(productId);
+    if (currentProduct.getFavourite()) {
+      currentProduct.getSelectorInPageFav().innerHTML =
+        '<i class="far fa-heart"></i>';
+      currentProduct
+        .getSelectorInPageFav()
+        .classList.remove("product__like--active");
+      currentProduct.setAddedToCart(false);
+    } else if (!currentProduct.getFavourite()) {
+      currentProduct.getSelectorInPageFav().innerHTML =
+        '<i class="fas fa-heart"></i>';
+      currentProduct
+        .getSelectorInPageFav()
+        .classList.add("product__like--active");
+      currentProduct.setAddedToFavourites(true);
     }
   }
-
-  addToCart(e, mainCart) {
+  addToCart(e) {
     const productId = parseFloat(
       e.currentTarget.closest(".product").dataset.id
     );
     const currentProduct = this.findProductById(productId);
 
-    if (!currentProduct.addedToCart) {
-      this.setAddedToCart(productId);
-      e.currentTarget.classList.add("product__bag--active");
-      e.currentTarget.textContent = "Added to Cart";
-      mainCart.placeInCart(currentProduct);
+    if (!currentProduct.getAddedToCart()) {
+      currentProduct.setAddedToCart(true);
+      currentProduct
+        .getSelectorInPageBtn()
+        .classList.add("product__bag--active");
+      currentProduct.getSelectorInPageBtn().innerHTML = "Added to Cart";
+      console.log(this.mainCart);
+      this.mainCart.placeInCart(currentProduct);
     }
   }
+
+  showAddedToCart() {
+    const { products } = this.mainCart;
+    const addedToCart = this.products.filter(product => {
+      const arr = products.filter(elem => product.getId() === elem.id);
+      if (arr.length) return true;
+      else return false;
+    });
+    addedToCart.forEach(product => {
+      const classess = ["active", "product__bag--active"];
+      classess.forEach(name =>
+        product.getSelectorInPageBtn().classList.add(`${name}`)
+      );
+      product.setAddedToCart(true);
+    });
+  }
+  showAddedToFavourites() {}
 }
 
 export { ProductsCollection };

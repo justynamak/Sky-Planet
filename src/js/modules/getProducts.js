@@ -1,8 +1,17 @@
 import { ProductsCollection } from "./ProductsCollection";
 import { Product } from "./Product";
+import { Paginator } from "./Paginator";
 
-export default function(url, collection, mainCart) {
-  fetch(url)
+export default function(config) {
+  const { url, collection, mainCart, paginator } = config;
+
+  const formData = new FormData();
+  formData.append("page", paginator.getCurrentPage());
+
+  fetch(url, {
+    method: "post",
+    body: formData
+  })
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -10,6 +19,8 @@ export default function(url, collection, mainCart) {
       return Promise.reject(response);
     })
     .then(data => {
+      paginator.setCurrentPage(data.page);
+      paginator.setMaxPages(data.maxPages);
       return data.products;
     })
     .then(products => {
@@ -20,13 +31,14 @@ export default function(url, collection, mainCart) {
         return new Product(id, name, price, image, counter);
       });
     })
-    .then(arr => collection.setProducts(arr))
-    .then(arr => collection.getProductsSelectors())
     .then(arr => {
-      collection.handleMouseEvent();
-      collection.handleAddToFavourites();
-      collection.handleAddToCart(mainCart);
-      mainCart.handleRemoveFromCart(collection);
+      collection.setProducts(arr);
+      return collection.getProducts();
+    })
+    .then(arr => collection.setProductsSelectors())
+    .then(arr => {
+      collection.showAddedToCart();
+      paginator.createPagination(config);
       return arr;
     })
     .then(arr => console.log(collection))
