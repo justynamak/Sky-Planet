@@ -37,9 +37,12 @@ export default function(config) {
     })
     .then(arr => collection.setProductsSelectors())
     .then(arr => {
+      mainCart.setCollection(collection);
       collection.showAddedToCart();
+      collection.showAddedToFavourites();
       paginator.createPagination(config);
       return arr;
     })
+    .then(arr => console.log(collection))
     .catch(err => console.log(err));
 }
