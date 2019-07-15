@@ -25,7 +25,9 @@ class Cart {
     this.handleRemoveFromCart();
     this.windowSize = new WindowSize();
   }
-
+  setCollection(collection) {
+    this.collection = collection;
+  }
   setSelectorProductInCart(product, selectorItem) {
     const id = product.getId();
 
@@ -53,13 +55,14 @@ class Cart {
       this.removeFromCart.bind(this)
     );
   }
+
   calculateThePrice() {
     const money = this.products.reduce((productA, productB) => {
       return productA + productB.getPrice();
     }, 0);
     this.moneyToPay = money;
   }
-  showMoneyToPay() {   
+  showMoneyToPay() {
     this.toPaySelector.innerHTML = `${this.moneyToPay}$`;
   }
   showCountProducts() {
@@ -112,6 +115,7 @@ class Cart {
       const indexElem = this.productsInCartSelectors.findIndex(
         product => product.id === elem.id
       );
+
       const index = this.products.findIndex(
         product => product.getId() === elem.id
       );
@@ -123,8 +127,8 @@ class Cart {
       this.showCountProducts();
       this.calculateThePrice();
       this.showMoneyToPay();
-      this.lastRemoved.setAddedToCart(false);
-      this.lastRemoved.removeAddedToCartInHtml();
+
+      this.collection.removeAddedToCartInHtml(this.lastRemoved);
 
       if (!this.products.length) {
         this.cartEmptySelector.classList.remove("hidden");
