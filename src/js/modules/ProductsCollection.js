@@ -9,12 +9,13 @@ class ProductsCollection {
     this.bagBtnsSelector = null;
     this.likesSelector = null;
     this.mainCart = mainCart;
+    this.favouritesProducts = [];
 
     this.windowSize = new WindowSize();
-    this.handleAddToCart();
+    this.saveToSessionStorage();
 
     window.addEventListener("resize", this.showAddedToCart.bind(this));
-    // window.addEventListener("resize", this.showAddedToFavourites.bind(this));
+    window.addEventListener("resize", this.showAddedToFavourites.bind(this));
   }
 
   getProducts() {
@@ -100,22 +101,39 @@ class ProductsCollection {
   addToFavourites(e) {
     const productId = parseFloat(e.target.closest(".product").dataset.id);
     const currentProduct = this.findProductById(productId);
-
+    const index = this.favouritesProducts.findIndex(
+      product => product.id === currentProduct.getId()
+    );
+    this.toggleFavouritesInHtml(currentProduct, index);
+  }
+  toggleFavouritesInHtml(currentProduct, index) {
     if (currentProduct.getFavourite()) {
       currentProduct.getSelectorInPageFav().innerHTML =
         '<i class="far fa-heart"></i>';
       currentProduct
         .getSelectorInPageFav()
         .classList.remove("product__like--active");
-      currentProduct.setAddedToCart(false);
+
+      currentProduct.setAddedToFavourites(false);
+      this.favouritesProducts.splice(index, 1);
+      this.saveToSessionStorage();
     } else if (!currentProduct.getFavourite()) {
       currentProduct.getSelectorInPageFav().innerHTML =
         '<i class="fas fa-heart"></i>';
       currentProduct
         .getSelectorInPageFav()
         .classList.add("product__like--active");
+      currentProduct.getSelectorInPageFav().classList.add("active");
       currentProduct.setAddedToFavourites(true);
+      this.favouritesProducts.push(currentProduct);
+
+      this.saveToSessionStorage();
     }
+  }
+  checkFavouritesInHtml(product) {
+    product.getSelectorInPageFav().innerHTML = '<i class="fas fa-heart"></i>';
+    product.getSelectorInPageFav().classList.add("product__like--active");
+    product.getSelectorInPageFav().classList.add("active");
   }
   addToCart(e) {
     const productId = parseFloat(
@@ -128,11 +146,25 @@ class ProductsCollection {
       currentProduct
         .getSelectorInPageBtn()
         .classList.add("product__bag--active");
-      currentProduct.getSelectorInPageBtn().innerHTML = "Added to Cart";     
+      currentProduct.getSelectorInPageBtnText().innerHTML = "Added to Cart";
+      currentProduct.getSelectorInPageBtnIcon().classList.add("hide");
       this.mainCart.placeInCart(currentProduct);
     }
   }
+  removeAddedToCartInHtml({ id }) {
+    this.products.forEach(product => {
+      if (product.getId() === id) {
+        product.setAddedToCart(false);
+        const classess = ["active", "product__bag--active"];
 
+        classess.forEach(name => {
+          product.getSelectorInPageBtn().classList.remove(`${name}`);
+        });
+        product.getSelectorInPageBtnText().innerHTML = "Add to Cart";
+        product.getSelectorInPageBtnIcon().classList.remove("hide");
+      }
+    });
+  }
   showAddedToCart() {
     const { products } = this.mainCart;
     const addedToCart = this.products.filter(product => {
@@ -140,6 +172,7 @@ class ProductsCollection {
       if (arr.length) return true;
       else return false;
     });
+
     addedToCart.forEach(product => {
       const classess = ["active", "product__bag--active"];
       classess.forEach(name =>
@@ -148,7 +181,26 @@ class ProductsCollection {
       product.setAddedToCart(true);
     });
   }
-  showAddedToFavourites() {}
+  showAddedToFavourites() {
+    const data = sessionStorage.getItem("products");
+    this.favouritesProducts = JSON.parse(data);
+    let addedToCart;
+    addedToCart = this.products.filter(product => {
+      const arr = this.favouritesProducts.filter(
+        elem => product.getId() === elem.id
+      );
+      if (arr.length) return true;
+      else return false;
+    });
+
+    addedToCart.forEach(product => {
+      this.checkFavouritesInHtml(product);
+      product.setAddedToFavourites(true);
+    });
+  }
+  saveToSessionStorage() {
+    sessionStorage.setItem("products", JSON.stringify(this.favouritesProducts));
+  }
 }
 
 export { ProductsCollection };
