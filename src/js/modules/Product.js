@@ -46,6 +46,12 @@ class Product {
   getSelectorInPageBtn() {
     return this.selectorInPageBtn;
   }
+  getSelectorInPageBtnText() {
+    return this.selectorInPageBtnText;
+  }
+  getSelectorInPageBtnIcon() {
+    return this.selectorInPageBtnIcon;
+  }
   getSelectorInPageFav() {
     return this.selectorInPageFav;
   }
@@ -74,6 +80,12 @@ class Product {
     );
     this.selectorImgHover = document.querySelector(
       `.main__product-${this.number} .product__img-hover`
+    );
+    this.selectorInPageBtnText = document.querySelector(
+      `.main__product-${this.number} .product__bag .product__bag-text`
+    );
+    this.selectorInPageBtnIcon = document.querySelector(
+      `.main__product-${this.number} .product__bag .product__bag-icon`
     );
   }
 
@@ -130,13 +142,6 @@ class Product {
     const product3Img = [...product3.querySelectorAll(".product__img")];
     product3Img.forEach(img => img.classList.add("product__img--big"));
     this.big = true;
-  }
-  removeAddedToCartInHtml() {
-    const classess = ["active", "product__bag--active"];
-
-    classess.forEach(name =>
-      this.getSelectorInPageBtn().classList.remove(`${name}`)
-    );
   }
 }
 export { Product };
