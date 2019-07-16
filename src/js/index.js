@@ -16,4 +16,4 @@ const config = {
 };
 const loadedProducts = getProducts(config);
 mainCart.handleToggleContent();
-window.addEventListener("resize", () => getProducts(config), { once: true });
+window.addEventListener("resize", () => paginator.createPagination());
