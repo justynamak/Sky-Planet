@@ -13,6 +13,19 @@ class Paginator {
     this.arrow;
     this.windowSize = new WindowSize();
     this.event = false;
+    this.handleChangePageByArrow();
+  }
+  getCurrentPage() {
+    return this.currentPage;
+  }
+  getMaxPages() {
+    return this.maxPages;
+  }
+  setCurrentPage(number) {
+    this.currentPage = number;
+  }
+  setMaxPages(number) {
+    this.maxPages = number;
   }
   setConfig(config) {
     this.config = config;
@@ -27,6 +40,20 @@ class Paginator {
       this.changePage(e, true)
     );
   }
+  handleChangePageByArrow() {
+    this.pagination.addEventListener("click", e => this.changePageByArrow(e));
+  }
+  nextPage() {
+    this.currentPage = this.currentPage + 1;
+  }
+  toggleButtonMore() {
+    if (this.currentPage >= this.maxPages) {
+      this.buttonMoreSelector.classList.add("hide");
+    } else {
+      this.buttonMoreSelector.classList.remove("hide");
+    }
+  }
+
   changePage(e, mobile = false) {
     e.preventDefault();
     let currentNumber;
@@ -35,25 +62,19 @@ class Paginator {
       currentNumber = e.currentTarget.dataset.id;
       this.currentPage = currentNumber;
     } else {
-      this.currentPage = this.currentPage + 1;
-      if (this.currentPage >= this.maxPages)
-        this.buttonMoreSelector.classList.add("hide");
+      this.nextPage();
+      this.toggleButtonMore();
     }
     getProducts(this.config);
   }
+  changePageByArrow(e) {
+    if (e.target === this.arrow) {
+      this.clearProducts();
+      this.nextPage();
+      getProducts(this.config);
+    }
+  }
 
-  getCurrentPage() {
-    return this.currentPage;
-  }
-  getMaxPages() {
-    return this.maxPages;
-  }
-  setCurrentPage(number) {
-    this.currentPage = number;
-  }
-  setMaxPages(number) {
-    this.maxPages = number;
-  }
   createPagination() {
     if (!this.windowSize.checkIfMobile()) {
       this.pagination.innerHTML = "";
@@ -91,10 +112,17 @@ class Paginator {
       this.event = true;
     }
   }
+
   clearProducts() {
     const mainGrid = document.querySelector(".main__grid");
     const cache = document.querySelectorAll(".product:not(#clone)");
     cache.forEach(element => mainGrid.removeChild(element));
+  }
+  showCurrentPage() {
+    if (!this.windowSize.checkIfMobile()) {
+      this.clearProducts();
+      getProducts(this.config);
+    } else this.toggleButtonMore();
   }
 }
 export { Paginator };
