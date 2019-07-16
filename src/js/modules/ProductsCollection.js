@@ -34,8 +34,9 @@ class ProductsCollection {
     this.handleAddToCart();
   }
 
-  setProducts(newArr) {
-    this.products = newArr;
+  setProducts(newArr, mobile = false) {
+    if (!mobile) this.products = newArr;
+    else this.products = [...this.products, ...newArr];
   }
 
   handleMouseEvent() {
