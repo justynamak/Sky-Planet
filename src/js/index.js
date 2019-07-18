@@ -8,12 +8,13 @@ import { getValueRange } from "./modules/getValueRange";
 const url = "https://makuchdesign.pl/justyna/sky_planet/ajax.php";
 const mainCart = new Cart();
 const collection = new ProductsCollection(mainCart);
-const paginator = new Paginator();
+const paginator = new Paginator(collection);
 const config = {
   url,
   collection,
   mainCart,
-  paginator
+  paginator,
+  method: ""
 };
 const loadedProducts = getProducts(config);
 mainCart.handleToggleContent();

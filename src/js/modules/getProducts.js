@@ -4,7 +4,7 @@ import { Paginator } from "./Paginator";
 import { WindowSize } from "./WindowSize";
 
 export default function(config) {
-  const { url, collection, mainCart, paginator } = config;
+  const { url, collection, mainCart, paginator, method } = config;
   const windowSize = new WindowSize();
 
   const formData = new FormData();
@@ -28,19 +28,24 @@ export default function(config) {
     .then(products => {
       let counter = 0;
       return products.map(product => {
+        const addBefore = method === "addBefore" ? true : false;
         const { id, name, price, image } = product;
         if (!windowSize.checkIfMobile()) {
           counter <= 7 ? counter++ : (counter = 0);
         } else counter = id;
-        return new Product(id, name, price, image, counter);
+        return new Product(id, name, price, image, counter, addBefore);
       });
     })
     .then(arr => {
-      !windowSize.checkIfMobile()
+      !windowSize.checkIfMobile() || method === ""
         ? collection.setProducts(arr)
-        : collection.setProducts(arr, true);
+        : collection.setProducts(arr, true, method);
 
       return collection.getProducts();
+    })
+    .then(arr => {
+      collection.clearProductsInHtml();
+      collection.generateProducts();
     })
     .then(arr => collection.setProductsSelectors())
     .then(arr => {

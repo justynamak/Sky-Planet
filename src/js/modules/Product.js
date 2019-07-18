@@ -1,5 +1,5 @@
 class Product {
-  constructor(id, name, price, image, count) {
+  constructor(id, name, price, image, count, addBefore = false) {
     this.id = id;
     this.name = name;
     this.price = price;
@@ -9,12 +9,12 @@ class Product {
     this.favourite = false;
     this.addedToCart = false;
     this.big = false;
+    this.addBefore = addBefore;
     this.selectorInPage;
     this.selectorInPageBtn;
     this.selectorInPageFav;
     this.temporaryImage = "photo";
-
-    this.generateHtml();
+    // this.generateHtml();
   }
   getId() {
     return this.id;
@@ -129,9 +129,11 @@ class Product {
       temporaryImage
     );
     const insert = document.createElement("article");
+    // this.addBefore ? mainGrid.prepend(insert) : mainGrid.appendChild(insert);
 
     mainGrid.appendChild(insert);
     insert.outerHTML = cloneReplace;
+
     if (this.number === 3) this.addClassBig();
     this.setSelectors();
     return cloneReplace;

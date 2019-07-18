@@ -21,6 +21,9 @@ class ProductsCollection {
   getProducts() {
     return this.products;
   }
+  getProductsSelector() {
+    return this.productsSelector;
+  }
 
   setProductsSelectors() {
     this.productsSelector = [
@@ -34,9 +37,13 @@ class ProductsCollection {
     this.handleAddToCart();
   }
 
-  setProducts(newArr, mobile = false) {
-    if (!mobile) this.products = newArr;
-    else this.products = [...this.products, ...newArr];
+  setProducts(newArr, mobile = false, method = "change") {
+    if (!mobile && method === "change") this.products = newArr;
+    else if (mobile && method === "addAfter") {
+      this.products = [...this.products, ...newArr];
+    } else if (mobile && method === "addBefore") {
+      this.products = [...newArr, ...this.products];
+    }
   }
 
   handleMouseEvent() {
@@ -201,6 +208,17 @@ class ProductsCollection {
   }
   saveToSessionStorage() {
     sessionStorage.setItem("products", JSON.stringify(this.favouritesProducts));
+  }
+  generateProducts() {
+    this.products.forEach(product => product.generateHtml());
+  }
+  clearProductsInHtml() {
+    const mainGrid = document.querySelector(".main__grid");
+    const cache = document.querySelectorAll(".product:not(#clone)");
+    cache.forEach(element => mainGrid.removeChild(element));
+  }
+  clearProducts() {
+    this.products = [];
   }
 }
 
