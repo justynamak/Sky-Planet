@@ -1,4 +1,4 @@
-import { WindowSize } from "./WindowSize";
+import { WindowSize } from "../WindowSize";
 import { ProductsCollection } from "./ProductsCollection";
 import { Product } from "./Product";
 

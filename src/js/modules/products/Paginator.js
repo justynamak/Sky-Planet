@@ -1,5 +1,5 @@
 import getProducts from "./getProducts";
-import { WindowSize } from "./WindowSize";
+import { WindowSize } from "../WindowSize";
 import { ProductsCollection } from "./ProductsCollection";
 
 class Paginator {

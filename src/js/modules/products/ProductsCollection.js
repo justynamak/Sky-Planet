@@ -1,6 +1,6 @@
-import { WindowSize } from "./WindowSize";
+import { WindowSize } from "../WindowSize";
 import { Cart } from "./Cart";
-import { Product } from "./products/Product";
+import { Product } from "./Product";
 
 class ProductsCollection {
   constructor(mainCart) {

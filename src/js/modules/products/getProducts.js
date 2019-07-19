@@ -1,7 +1,7 @@
 import { ProductsCollection } from "./ProductsCollection";
 import { Product } from "./Product";
 import { Paginator } from "./Paginator";
-import { WindowSize } from "./WindowSize";
+import { WindowSize } from "../WindowSize";
 
 export default function(config) {
   const { url, collection, mainCart, paginator, method } = config;
