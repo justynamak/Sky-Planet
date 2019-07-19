@@ -1,5 +1,4 @@
-import { Device } from "./Device";
-export { Slider };
+import { WindowSize } from "./WindowSize";
 
 //6.glowna klasa obslugujaca slider, wyswietlaca
 class Slider {
@@ -18,7 +17,7 @@ class Slider {
     this.slideNumber = document.querySelector(".carousel__slide");
     this.slide = new SlideNumber();
     this.number = new PrintNumber();
-    this.device = new Device();
+    this.windowSize = new WindowSize();
     this.indexInterval = setInterval(this.changeSlideAuto.bind(this), 5000);
     this.arrowBack = document.querySelector(".carousel__arrow--back");
     this.arrowNext = document.querySelector(".carousel__arrow--next");
@@ -37,9 +36,7 @@ class Slider {
     if (this.carusel.classList.contains("carousel__effect")) {
       this.carusel.classList.remove("carousel__effect");
     }
-
     const that = this;
-
     setTimeout(() => {
       that.carusel.classList.add("carousel__effect");
     }, 500);
@@ -58,7 +55,7 @@ class Slider {
     this.slideEffect();
     let currentSlide = this.slide.slideNext();
 
-    if (this.device.checkIfMobile()) {
+    if (this.windowSize.checkIfMobile()) {
       this.changeAppearanceDots(currentSlide);
       this.carusel.style.backgroundImage = this.urlMobile[currentSlide];
     } else {
@@ -69,9 +66,7 @@ class Slider {
 
   changeSlideBack() {
     this.slideEffect();
-
     clearInterval(this.indexInterval);
-
     let currentSlide = this.slide.slideBack();
     this.carusel.style.backgroundImage = this.urlDesctop[currentSlide];
     this.slideNumber.innerHTML = this.number.numbers[currentSlide] + " ";
@@ -80,9 +75,7 @@ class Slider {
 
   changeSlideNext() {
     this.slideEffect();
-
     clearInterval(this.indexInterval);
-
     let currentSlide = this.slide.slideNext();
     this.carusel.style.backgroundImage = this.urlDesctop[currentSlide];
     this.slideNumber.innerHTML = this.number.numbers[currentSlide] + " ";
@@ -91,9 +84,7 @@ class Slider {
 
   changeSlidesWithDots(e) {
     this.slideEffect();
-
     clearInterval(this.indexInterval);
-
     const indexDot = this.dots.indexOf(e.target);
     this.slide.active = indexDot;
     this.changeAppearanceDots(indexDot);
@@ -158,3 +149,4 @@ class SlideNumber {
     return this.activeSlide[this.active];
   }
 }
+export { Slider };
