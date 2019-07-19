@@ -67,24 +67,19 @@ class Paginator {
       this.currentPage = this.maxPage + 1;
     }
     this.maxPage = this.currentPage;
-    console.log(this);
   }
   prevPage() {
     if (this.currentPage > 0) {
       this.currentPage = this.minPage - 1;
     }
     this.minPage = this.currentPage;
-    console.log(this);
   }
   toggleButtonMore() {
-    //tu zamiast 39 właściwość z serwera
-    // const lastProductIsVisible =
-    //   this.collection.findProductById(39) !== undefined ? true : false;
     const lastPageIsVisible =
       this.maxPage === this.maxPages || this.currentPage === this.maxPages
         ? true
         : false;
-    console.log(lastPageIsVisible);
+
     if (lastPageIsVisible) {
       this.buttonMoreSelector.classList.add("hide");
     } else {
@@ -94,7 +89,6 @@ class Paginator {
   toggleButtonPrev() {
     const firstPageIsVisible =
       this.minPage <= 1 || this.currentPage <= 1 ? true : false;
-    console.log(firstPageIsVisible, this);
     if (firstPageIsVisible) {
       this.buttonPrevSelector.classList.add("hide");
     } else {

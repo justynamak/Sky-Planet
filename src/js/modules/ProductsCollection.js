@@ -143,6 +143,22 @@ class ProductsCollection {
     product.getSelectorInPageFav().classList.add("product__like--active");
     product.getSelectorInPageFav().classList.add("active");
   }
+  toggleAppearanceBtnText(currentProduct, added = false) {
+    const classess = ["active", "product__bag--active"];
+    if (!added) {
+      classess.forEach(name => {
+        currentProduct.getSelectorInPageBtn().classList.remove(`${name}`);
+      });
+      currentProduct.getSelectorInPageBtnText().innerHTML = "Add to Cart";
+      currentProduct.getSelectorInPageBtnIcon().classList.remove("hide");
+    } else {
+      classess.forEach(name => {
+        currentProduct.getSelectorInPageBtn().classList.add(`${name}`);
+      });
+      currentProduct.getSelectorInPageBtnText().innerHTML = "Added to Cart";
+      currentProduct.getSelectorInPageBtnIcon().classList.add("hide");
+    }
+  }
   addToCart(e) {
     const productId = parseFloat(
       e.currentTarget.closest(".product").dataset.id
@@ -151,11 +167,7 @@ class ProductsCollection {
 
     if (!currentProduct.getAddedToCart()) {
       currentProduct.setAddedToCart(true);
-      currentProduct
-        .getSelectorInPageBtn()
-        .classList.add("product__bag--active");
-      currentProduct.getSelectorInPageBtnText().innerHTML = "Added to Cart";
-      currentProduct.getSelectorInPageBtnIcon().classList.add("hide");
+      this.toggleAppearanceBtnText(currentProduct, true);
       this.mainCart.placeInCart(currentProduct);
     }
   }
@@ -163,13 +175,7 @@ class ProductsCollection {
     this.products.forEach(product => {
       if (product.getId() === id) {
         product.setAddedToCart(false);
-        const classess = ["active", "product__bag--active"];
-
-        classess.forEach(name => {
-          product.getSelectorInPageBtn().classList.remove(`${name}`);
-        });
-        product.getSelectorInPageBtnText().innerHTML = "Add to Cart";
-        product.getSelectorInPageBtnIcon().classList.remove("hide");
+        this.toggleAppearanceBtnText(product, false);
       }
     });
   }
@@ -180,12 +186,8 @@ class ProductsCollection {
       if (arr.length) return true;
       else return false;
     });
-
     addedToCart.forEach(product => {
-      const classess = ["active", "product__bag--active"];
-      classess.forEach(name =>
-        product.getSelectorInPageBtn().classList.add(`${name}`)
-      );
+      this.toggleAppearanceBtnText(product, true);
       product.setAddedToCart(true);
     });
   }

@@ -33,7 +33,7 @@ export default function(config) {
         if (!windowSize.checkIfMobile()) {
           counter <= 7 ? counter++ : (counter = 0);
         } else counter = id;
-        return new Product(id, name, price, image, counter, addBefore);
+        return new Product(id, name, price, image, counter);
       });
     })
     .then(arr => {
