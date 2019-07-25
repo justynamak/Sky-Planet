@@ -2,13 +2,22 @@ import { ProductsCollection } from "./ProductsCollection";
 import { Product } from "./Product";
 import { Paginator } from "./Paginator";
 import { WindowSize } from "../WindowSize";
+import { FilterCollection } from "./FilterCollection";
 
 export default function(config) {
-  const { url, collection, mainCart, paginator, method } = config;
-  const windowSize = new WindowSize();
+  const {
+    url,
+    collection,
+    mainCart,
+    paginator,
+    method,
+    filterCollection
+  } = config;
 
+  const windowSize = new WindowSize();
   const formData = new FormData();
   formData.append("page", paginator.getCurrentPage());
+  formData.append("filters", JSON.stringify(filterCollection.getFilters()));
 
   fetch(url, {
     method: "post",

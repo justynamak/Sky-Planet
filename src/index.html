@@ -82,25 +82,25 @@
 				<ul class="popup">
 					<li><img class="popup__close" src="assets/icon-x.svg"></li>
 					<li class="sidebar__item">
-						<a href="#">All products<span class="sidebar__number">27</span> </a>
+						<a href="#"><span class="sidebar__item-text sidebar__item-text--active">All products</span><span class="sidebar__number">27</span> </a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Living<span class="sidebar__number">14</span></a>
+						<a href="#"><span class="sidebar__item-text">Living</span><span class="sidebar__number">14</span></a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Dining<span class="sidebar__number">03</span></a>
+						<a href="#"><span class="sidebar__item-text">Dining</span><span class="sidebar__number">03</span></a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Furniture<span class="sidebar__number">07</span></a>
+						<a href="#"><span class="sidebar__item-text">Furniture</span><span class="sidebar__number">07</span></a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Lighting<span class="sidebar__number">12</span></a>
+						<a href="#"><span class="sidebar__item-text">Lighting</span><span class="sidebar__number">12</span></a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Technics<span class="sidebar__number">10</span></a>
+						<a href="#"><span class="sidebar__item-text">Technics</span><span class="sidebar__number">10</span></a>
 					</li>
 					<li class="sidebar__item">
-						<a href="#">Accesories<span class="sidebar__number">21</span></a>
+						<a href="#"><span class="sidebar__item-text">Accesories</span><span class="sidebar__number">21</span></a>
 					</li>
 				</ul>			
 			</section>
@@ -108,47 +108,87 @@
 			<section class="filter sidebar__section">
 				<h3 class="heading medium-size sidebar__heading popup-show"><span class="sidebar__icon"><i class="fas fa-filter fa-xs"></i></span> Filter by</h3>
 				<ul class="popup">
-				<li><img class="popup__close" src="assets/icon-x.svg"></li>
-					<li class="sidebar__subsection"><h4 class="heading small-size">Price</h4>
-		
-				<input type="text" class="js-range-slider" name="my_range" value="" />
-					<div class="filter__row">				 	 
-					 <div class="filter__price-value filter__row">
-						<input class="filter__price-elem" id="from">
-						<input class="filter__price-elem" id="to">
-					 </div>
-					 <button class="filter__button filter__price-elem">Filter</button>
-					 </div>
-					</li>
+				<li>
+					<img class="popup__close" src="assets/icon-x.svg"></li>
+
+					<section class="sidebar__subsection price">
+						<h4 class="heading small-size">Price</h4>				
+					<form action="">
+						<input type="text" class="js-range-slider" name="my_range" value="" />
+							<div class="filter__row">				 	 
+							 <div class="filter__price-value filter__row">
+								<input class="filter__price-elem" id="from">
+								<input class="filter__price-elem" id="to">
+							 </div>						
+							 </div>
+					</form>
+					</section>			
 					
-					<li class="sidebar__subsection"><h4 class="heading small-size">Color</h4>
+					<section class="sidebar__subsection color"><h4 class="heading small-size">Color</h4>
 						<ul class="filter__colors">
-							<li class="filter__color filter__color--gray filter__color--active"></li>			
-							<li class="filter__color filter__color--white"></li>
-							<li class="filter__color filter__color--red"></li>
-							<li class="filter__color filter__color--blue"></li>
-							<li class="filter__color filter__color--green"></li>
+							<li class="filter__color filter__color--gray filter__color--active">gray</li>			
+							<li class="filter__color filter__color--white">white</li>
+							<li class="filter__color filter__color--red">red</li>
+							<li class="filter__color filter__color--blue">blue</li>
+							<li class="filter__color filter__color--green">green</li>
 						</ul>
-					</li>
-					<li class="sidebar__subsection"><h4 class="heading small-size">Size</h4>
+					</section>
+					<section class="sidebar__subsection size"><h4 class="heading small-size">Size</h4>
 						<ul>
-							<li class="sidebar__item"><a href="#">Small<span class="sidebar__number">07</span></a></li>
-							<li class="sidebar__item"><a href="#">Medium<span class="sidebar__number">12</span></a></li>
-							<li class="sidebar__item"><a href="#">Large<span class="sidebar__number">18</span></a></li>
+							<li class="sidebar__item"><a href="#"><span class="sidebar__item-text">Small</span><span class="sidebar__number">07</span></a></li>
+							<li class="sidebar__item"><a href="#"><span class="sidebar__item-text">Medium</span><span class="sidebar__number">12</span></a></li>
+							<li class="sidebar__item"><a href="#"><span class="sidebar__item-text">Large</span><span class="sidebar__number">18</span></a></li>
 						</ul>
-					</li>
-					<li class="sidebar__subsection"><h4 class="heading small-size">Brands</h4>
+					</section>
+					<section class="sidebar__subsection brands">
+						<h4 class="heading small-size">
+							<span class="sidebar__item-text"></span>Brands</h4>
 						<ul>
-							<li class="sidebar__item"><a href="#">Banshu Hamono<span class="sidebar__number">02</span></a></li>
-							<li class="sidebar__item"><a href="#">Bower <span class="sidebar__number">10</span></a></li>
-							<li class="sidebar__item"><a href="#">Braun<span class="sidebar__number">07</span></a></li>
-							<li class="sidebar__item"><a href="#">Elevenplus<span class="sidebar__number">09</span></a></li>
-							<li class="sidebar__item"><a href="#">Field<span class="sidebar__number">01</span></a></li>
-							<li class="sidebar__item"><a href="#">Henry Wilson<span class="sidebar__number">11</span></a></li>
-							<li class="sidebar__item"><a href="#">Menu<span class="sidebar__number">17</span></a></li>
+							<li class="sidebar__item">
+								<a href="#">
+									<span class="sidebar__item-text">Banshu Hamono</span>
+									<span class="sidebar__number">02</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#">
+									<span class="sidebar__item-text">Bower </span>
+									<span class="sidebar__number">10</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#"><span class="sidebar__item-text">Braun</span>
+									<span class="sidebar__number">07</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#"><span class="sidebar__item-text">Elevenplus</span>
+									<span class="sidebar__number">09</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#">
+									<span class="sidebar__item-text">Field</span>
+									<span class="sidebar__number">01</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#">
+									<span class="sidebar__item-text">Henry Wilson</span>
+									<span class="sidebar__number">11</span>
+								</a>
+							</li>
+							<li class="sidebar__item">
+								<a href="#">
+									<span class="sidebar__item-text">Menu</span>
+									<span class="sidebar__number">17</span>
+								</a>
+							</li>
 						</ul>
-					</li>
-				</ul>					
+					</section>
+
+				</ul>	
+				<button class="filter__button filter__price-elem">Filter</button>				
 			</section>
 			
 			<section class="sidebar__tags sidebar__section">
