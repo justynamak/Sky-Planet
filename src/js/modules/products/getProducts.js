@@ -32,6 +32,8 @@ export default function(config) {
     .then(data => {
       paginator.setCurrentPage(data.page);
       paginator.setMaxPages(data.maxPages);
+      collection.setCountProducts(data.count);
+      collection.setPageLimit(data.pageLimit);
       return data.products;
     })
     .then(products => {
@@ -53,6 +55,7 @@ export default function(config) {
     })
     .then(arr => {
       collection.clearProductsInHtml();
+      collection.showTheNumberOfProducts(paginator.getCurrentPage());
       if (collection.getProducts().length) {
         collection.hideInfoNoProducts();
         collection.generateProducts();

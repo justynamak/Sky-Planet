@@ -5,12 +5,15 @@ import { Product } from "./Product";
 class ProductsCollection {
   constructor(mainCart) {
     this.products = [];
+    this.countProducts = null;
+    this.pageLimit = null;
     this.productsSelector = null;
     this.bagBtnsSelector = null;
     this.likesSelector = null;
     this.mainCart = mainCart;
     this.favouritesProducts = [];
     this.mainInfoSelector = document.querySelector(".main__info");
+    this.mainSortNumberSelector = document.querySelector(".main__sort-number");
 
     this.windowSize = new WindowSize();
     this.saveToSessionStorage();
@@ -45,6 +48,12 @@ class ProductsCollection {
     } else if (mobile && method === "addBefore") {
       this.products = [...newArr, ...this.products];
     }
+  }
+  setCountProducts(count) {
+    this.countProducts = count;
+  }
+  setPageLimit(limit) {
+    this.pageLimit = limit;
   }
 
   handleMouseEvent() {
@@ -228,6 +237,13 @@ class ProductsCollection {
   }
   hideInfoNoProducts() {
     this.mainInfoSelector.classList.add("hide");
+  }
+  showTheNumberOfProducts(currentPage) {
+    const productsLength = this.products.length;
+    //obliczanie ilości pokazanych produktow
+    const shownProducts = (currentPage - 1) * this.pageLimit + productsLength;
+    const html = `Showing ${shownProducts} of ${this.countProducts} results`;
+    this.mainSortNumberSelector.textContent = html;
   }
 }
 
