@@ -1,80 +1,77 @@
-.footer{
-	background-color: $main-gray;	
-	
-	&__subscribe{
-		display: flex;		
-		align-items: center;
-		flex-direction: column;
-		text-align: center;
-		padding: 2em 0;		
-		
-		@media all and #{$mq-medium}{
-			justify-content: space-between;
-			flex-direction: row;
-			text-align: right;
-			padding: 3em 0;
-			align-items: baseline;
-		}
-	}
-	&__heading{
-		font-size: 1.8em;
-		font-weight: 400;
-		margin-bottom: 0.7em;
-		
-		@media all and #{$mq-medium}{
-			font-size: 2.3em;
-			margin-bottom: 0;
-		}
-		
-	}
-	&__line{
-		border: none;
-		border: 1px solid $footer-gray;		
-		
-		@media all and #{$mq-medium}{
-			display: none;
-		}
-	}
-	&__links{	
-		display: flex;
-		justify-content: center;
-		padding: 2em 0;			
-	}
-	&__link{
-		padding: 0 2%;
-		font-weight: 700;
-		white-space: nowrap;
-		
-		@media all and #{$mq-medium}{
-			padding: 0 1em;
-		}		
-	}
+.footer {
+  background-color: $main-gray;
 
-	&__row{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 2em 0;
-		
-		@media all and #{$mq-medium}{
-			padding: 0;
-			
-		}
-		
-	}
-	&__rights{
-		display: none;
-		
-		@media all and #{$mq-medium}{
-			display: inline-block;
-		}
-	}
-	&__bg-desctop{
-		@media all and #{$mq-medium}{
-			background: #fff;
-		}
-	}
-	&__text{
-		font-size: 0.85em;
-	}
+  &__subscribe {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2em 0;
+
+    @media all and #{$mq-medium} {
+      justify-content: space-between;
+      flex-direction: row;
+      text-align: right;
+      padding: 3em 0;
+      align-items: baseline;
+    }
+  }
+  &__heading {
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 0.7em;
+
+    @media all and #{$mq-medium} {
+      font-size: 2.3em;
+      margin-bottom: 0;
+    }
+  }
+  &__line {
+    border: none;
+    border: 1px solid $footer-gray;
+
+    @media all and #{$mq-medium} {
+      display: none;
+    }
+  }
+  &__links {
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+  }
+  &__link {
+    padding: 0 2%;
+    font-weight: 700;
+    white-space: nowrap;
+
+    @media all and #{$mq-medium} {
+      padding: 0 1em;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 0;
+
+    @media all and #{$mq-medium} {
+      padding: 0;
+    }
+  }
+  &__rights {
+    display: none;
+
+    @media all and #{$mq-medium} {
+      display: inline-block;
+    }
+  }
+  &__bg-desctop {
+    @media all and #{$mq-medium} {
+      background: #fff;
+    }
+  }
+  &__text {
+    font-size: 0.85em;
+  }
 }

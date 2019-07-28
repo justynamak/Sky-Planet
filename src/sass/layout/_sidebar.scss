@@ -24,10 +24,16 @@
   &__item {
     padding: 0.5em 0;
     transition: 0.2s all ease-in-out;
-
+    &:hover {
+      @media all and #{$mq-medium} {
+        transform: translateX(1em);
+      }
+    }
     &--active {
       font-weight: 800;
-      font-size: 1.1em;
+      @media all and #{$mq-medium} {
+        transform: translateX(1em);
+      }
     }
   }
 
@@ -128,6 +134,7 @@
     cursor: pointer;
     margin-right: 0.5em;
     text-indent: -1000px;
+    transition: 0.5s box-shadow ease-in-out;
 
     &--gray {
       @include filterColor(#c7c7c7);
@@ -145,6 +152,7 @@
       @include filterColor(#beffc9);
     }
     &--active {
+      box-shadow: 2px 1px 3px gray;
       border: 1px solid #ccc;
       background-image: url("../assets/iconmonstr-check-mark-thin.svg");
       background-size: 65%;

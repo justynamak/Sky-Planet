@@ -166,6 +166,9 @@ class Paginator {
       this.toggleButtonMore();
     }
   }
+  clearPagination() {
+    this.pagination.innerHTML = "";
+  }
 
   showCurrentPage() {
     if (!this.windowSize.checkIfMobile()) {

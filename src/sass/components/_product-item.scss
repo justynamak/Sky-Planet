@@ -35,8 +35,6 @@
     background-color: $main-gray;
   }
   &__img {
-    //		display: block;
-    //		margin: 0 auto;
     width: 100%;
     height: auto;
     max-width: 260px;
@@ -48,7 +46,7 @@
     transition: all 0.7s ease-in-out;
 
     &--big {
-      max-width: 560px;
+      // max-width: 560px;
     }
   }
   &__img-hover {

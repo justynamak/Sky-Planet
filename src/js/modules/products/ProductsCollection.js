@@ -10,6 +10,7 @@ class ProductsCollection {
     this.likesSelector = null;
     this.mainCart = mainCart;
     this.favouritesProducts = [];
+    this.mainInfoSelector = document.querySelector(".main__info");
 
     this.windowSize = new WindowSize();
     this.saveToSessionStorage();
@@ -221,6 +222,12 @@ class ProductsCollection {
   }
   clearProducts() {
     this.products = [];
+  }
+  showInfoNoProducts() {
+    this.mainInfoSelector.classList.remove("hide");
+  }
+  hideInfoNoProducts() {
+    this.mainInfoSelector.classList.add("hide");
   }
 }
 

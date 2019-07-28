@@ -8,6 +8,10 @@
   @media all and #{$mq-medium} {
     flex: 3;
   }
+  &__info {
+    margin-top: 10%;
+    text-align: center;
+  }
   &__sort {
     display: none;
 

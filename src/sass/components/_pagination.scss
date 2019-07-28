@@ -1,27 +1,27 @@
-.pagination{
-	display: none;
-	
-	@media all and #{$mq-medium}{
-		display: flex;
-		justify-content: flex-end;
-		margin: 2em 0;
-		font-family: $mono-font-family;
-		font-size: 0.9em;
-	}
-	&__list{
-		display: flex;
-	}
+.pagination {
+  display: none;
 
-	&__item{
-		@media all and #{$mq-medium}{
-			padding-right: 0.7em;
-		}
-		&--active{
-			font-weight: bold;
-		}
-	}
-	&__arrow{
-		cursor: pointer;
-		width: 1em;
-	}
+  @media all and #{$mq-medium} {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em 0;
+    font-family: $mono-font-family;
+    font-size: 0.9em;
+  }
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    @media all and #{$mq-medium} {
+      padding-right: 0.7em;
+    }
+    &--active {
+      font-weight: bold;
+    }
+  }
+  &__arrow {
+    cursor: pointer;
+    width: 1em;
+  }
 }

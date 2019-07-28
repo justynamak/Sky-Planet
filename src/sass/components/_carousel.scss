@@ -1,103 +1,90 @@
-.carousel{	
-	overflow: hidden;
-	height: 70vh;	
-	width: 100%;
-	background-color: $light-gray;
-	
-	&__content{		
-//		background-image: url(../assets/slide1.jpg);
-//		background-repeat: no-repeat;
-//		background-position: 30%;
-//		background-size: contain;
-//		height: 100%;
-//		width: 100%;
-		display: flex;	
+.carousel {
+  overflow: hidden;
+  height: 70vh;
+  width: 100%;
+  background-color: $light-gray;
 
-		
-	}
-	&__bg{
-		background-image: url(../assets/slide1.jpg);
-		background-repeat: no-repeat;
-		background-position: 30%;
-		background-size: contain;
-		height: 100%;
-		width: 100%;
-		position: absolute;
-		left:0;
-		top:0;
-		opacity: 0.4;
-		
-	}
-	&__effect{
-		opacity: 1;
-		transition: 0.3s opacity ease-in;
-		
-	}
-	&__text{
-		position: absolute;
-		left:50%;
-		top:50%;
-		transform:translateY(-50%);		
-	}
-	&__link{		
-		cursor: pointer;
-		position: relative;
-		
-		&::after{
-			@include underline;		
-		}
-		
-	}
-	&__dots{
-		display: flex;		
-		position: absolute;
-		bottom: 5%;	
-		left:50%;
-		transform: translateX(-50%);
-	}
-	&__dot{		
-		width:1em;
-		height: 1em;
-		border: 3px solid $active-dot;
-		border-radius: 50%;
-		margin: 0 0.5em;
-		cursor:pointer;
-		
-		@media all and #{$mq-medium}{
-			display: none;
-		}
-		&--active{
-			background-color: $active-dot;
-			
-			
-			@media all and #{$mq-medium}{
-				display: none;
-			}
-		}
-	}
-	&__number{
-		position: absolute;
-		bottom: 5%;
-		right: 0;
-	}
-	&__arrow{
-		display: none;
-		
-		@media all and #{$mq-medium}{
-			cursor: pointer;
-			display: block;
-			width: 1.5em;
-			height: 2.5em;	
-			position: absolute;
-			top:50%;
-			transform:translateY(-50%);
-		}
-		&--back{
-		left:0;
-		
-		}
-		&--next{
-		right: 0;	
-		}
-	}
+  &__content {
+    display: flex;
+  }
+  &__bg {
+    background-image: url(../assets/slide1.jpg);
+    background-repeat: no-repeat;
+    background-position: 30%;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.4;
+  }
+  &__effect {
+    opacity: 1;
+    transition: 0.3s opacity ease-in;
+  }
+  &__text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__link {
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      @include underline;
+    }
+  }
+  &__dots {
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__dot {
+    width: 1em;
+    height: 1em;
+    border: 3px solid $active-dot;
+    border-radius: 50%;
+    margin: 0 0.5em;
+    cursor: pointer;
+
+    @media all and #{$mq-medium} {
+      display: none;
+    }
+    &--active {
+      background-color: $active-dot;
+
+      @media all and #{$mq-medium} {
+        display: none;
+      }
+    }
+  }
+  &__number {
+    position: absolute;
+    bottom: 5%;
+    right: 0;
+  }
+  &__arrow {
+    display: none;
+
+    @media all and #{$mq-medium} {
+      cursor: pointer;
+      display: block;
+      width: 1.5em;
+      height: 2.5em;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &--back {
+      left: 0;
+    }
+    &--next {
+      right: 0;
+    }
+  }
 }

@@ -2,7 +2,7 @@ import { ProductsCollection } from "./ProductsCollection";
 import { Product } from "./Product";
 import { Paginator } from "./Paginator";
 import { WindowSize } from "../WindowSize";
-import { FilterCollection } from "./FilterCollection";
+import { FilterCollection } from "./filters/FilterCollection";
 
 export default function(config) {
   const {
@@ -49,12 +49,18 @@ export default function(config) {
       !windowSize.checkIfMobile() || method === ""
         ? collection.setProducts(arr)
         : collection.setProducts(arr, true, method);
-
       return collection.getProducts();
     })
     .then(arr => {
       collection.clearProductsInHtml();
-      collection.generateProducts();
+      if (collection.getProducts().length) {
+        collection.hideInfoNoProducts();
+        collection.generateProducts();
+      } else {
+        collection.showInfoNoProducts();
+        paginator.clearPagination();
+        return Promise.reject("no products");
+      }
     })
     .then(arr => collection.setProductsSelectors())
     .then(arr => {
@@ -65,6 +71,5 @@ export default function(config) {
       paginator.createPagination();
       return arr;
     })
-    .then(arr => console.log(collection))
     .catch(err => console.log(err));
 }

@@ -2,8 +2,8 @@ import { ProductsCollection } from "./ProductsCollection";
 import getProducts from "./getProducts";
 import { Cart } from "./Cart";
 import { Paginator } from "./Paginator";
-import { getValueRange } from "./getValueRange";
-import { FilterCollection } from "./FilterCollection";
+import { getValueRange } from "./filters/getValueRange";
+import { FilterCollection } from "./filters/FilterCollection";
 
 let config;
 export default () => {
@@ -27,9 +27,10 @@ export default () => {
   mainCart.handleToggleContent();
   window.addEventListener("resize", () => paginator.showCurrentPage());
   window.addEventListener("resize", () => paginator.createPagination());
-  buttonFilter.addEventListener("click", () => getProducts(config));
-
-  getValueRange();
+  buttonFilter.addEventListener("click", () => {
+    paginator.setCurrentPage(1);
+    getProducts(config);
+  });
 };
 
 export { config };

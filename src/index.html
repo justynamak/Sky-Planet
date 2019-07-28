@@ -37,10 +37,10 @@
 				</nav>
 				<h1 class="heading main-heading header__heading">Maison</h1>
 				<aside class="header__cart cart popup-show">
-					<img class="cart__icon" src="assets/iconmonstr-shopping-bag-4.svg">
+					<img class="cart__icon" src="assets/iconmonstr-shopping-bag-4.svg" alt="cart">
 					<div class="cart__count"></div>
 					<div class="cart__dropdown popup">
-					<img class="popup__close" src="assets/icon-x.svg">
+					<img class="popup__close" src="assets/icon-x.svg" alt="icon-close">
 					<div class="cart__container">
 						<div class="cart__empty">
 							<p class="cart__dropdown-text">Your cart is empty.</p>
@@ -56,7 +56,7 @@
 			<div class="container">
 				<div class="carousel__content">
 				<div class="carousel__bg carousel__effect"></div>
-					<img class="carousel__arrow carousel__arrow--back" src="assets/arrow-back.svg">
+					<img class="carousel__arrow carousel__arrow--back" src="assets/arrow-back.svg" alt="arrow-back">
 					<div class="carousel__text">
 						<h2 class="heading large-size">Sky planet</h2>
 						<a class="medium-size carousel__link">Shop now</a>
@@ -67,7 +67,7 @@
 						<div class="carousel__dot"></div>
 					</div>
 					<p class="carousel__number"><span class="carousel__slide">1 </span><span class="cursive-text">of</span> 3</p>
-					<img class="carousel__arrow carousel__arrow--next" src="assets/arrow-next.svg">
+					<img class="carousel__arrow carousel__arrow--next" src="assets/arrow-next.svg" alt="arrow-next">
 				</div>
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 				<h3 class="heading medium-size sidebar__heading popup-show">Categories <span class="sidebar__icon"><i class="fas fa-caret-down fa-sm"></i></span></h3>
 					
 				<ul class="popup">
-					<li><img class="popup__close" src="assets/icon-x.svg"></li>
+					<li><img class="popup__close" src="assets/icon-x.svg" alt="popup-close"></li>
 					<li class="sidebar__item">
 						<a href="#"><span class="sidebar__item-text sidebar__item-text--active">All products</span><span class="sidebar__number">27</span> </a>
 					</li>
@@ -109,7 +109,7 @@
 				<h3 class="heading medium-size sidebar__heading popup-show"><span class="sidebar__icon"><i class="fas fa-filter fa-xs"></i></span> Filter by</h3>
 				<ul class="popup">
 				<li>
-					<img class="popup__close" src="assets/icon-x.svg"></li>
+					<img class="popup__close" src="assets/icon-x.svg" alt="popup-close"></li>
 
 					<section class="sidebar__subsection price">
 						<h4 class="heading small-size">Price</h4>				
@@ -117,8 +117,8 @@
 						<input type="text" class="js-range-slider" name="my_range" value="" />
 							<div class="filter__row">				 	 
 							 <div class="filter__price-value filter__row">
-								<input class="filter__price-elem" id="from">
-								<input class="filter__price-elem" id="to">
+								<input class="filter__price-elem" id="from" disabled>
+								<input class="filter__price-elem" id="to" disabled>
 							 </div>						
 							 </div>
 					</form>
@@ -126,7 +126,7 @@
 					
 					<section class="sidebar__subsection color"><h4 class="heading small-size">Color</h4>
 						<ul class="filter__colors">
-							<li class="filter__color filter__color--gray filter__color--active">gray</li>			
+							<li class="filter__color filter__color--gray">gray</li>			
 							<li class="filter__color filter__color--white">white</li>
 							<li class="filter__color filter__color--red">red</li>
 							<li class="filter__color filter__color--blue">blue</li>
@@ -203,19 +203,19 @@
 				</ul>
 			</section>
 			</aside>
-		<main class="main">
+		<main class="main">			
 				<p class="text-click main__prev hide">Show previous</p>
 			<h2 class="hide">Products</h2>
 			<aside class="main__sort">
 				<p class="medium-size main__sort-list">Sort by: A-Z <span class="main__icon-sort"><i class="fas fa-caret-down fa-sm"></i></span></p>
 				<p>Showing 1—12 of 24 results</p>
 			</aside>
-		
+			<p class="hide main__info">No products</p>
 			<div class="main__grid">
 				<article id="clone" class="product main__product-{number}" style="display: none;" data-id="{id}">
 					<div class="product__bg">
-						<img class="product__img" src="./assets/{image}.jpg" srcset="./assets/{image}-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px">
-						<img class="product__img product__img-hover" src="./assets/{image}-hover.jpg">
+						<img class="product__img" src="./assets/{image}.jpg" srcset="./assets/{image}.jpg 260w , ./assets/{image}-2x.jpg 400w" sizes="(max-width:1024px) 260px, 400px" alt="product-image">
+						<img class="product__img product__img-hover" src="./assets/{image}-hover.jpg" alt="product-image">
 					</div>
 					<div class="product__info">
 						<h3 class="heading small-size">{name}</h3>
@@ -226,7 +226,7 @@
 								<i class="far fa-heart"></i>
 							</div>
 							<p class="product__bag ">
-								<img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg"><span class="product__bag-text">Add to Cart</span>
+								<img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg" alt="icon-add-to-cart"><span class="product__bag-text">Add to Cart</span>
 							</p>
 						</aside>
 					
