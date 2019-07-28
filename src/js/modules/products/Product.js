@@ -116,6 +116,7 @@ class Product {
       "price",
       "image",
       "image",
+      "image",
       "image"
     ];
     const temporaryImage = this.id < 8 ? false : true;
