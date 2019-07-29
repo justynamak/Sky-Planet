@@ -79,8 +79,9 @@
 			<section class="sidebar__section categories">
 				<h3 class="heading medium-size sidebar__heading popup-show">Categories <span class="sidebar__icon"><i class="fas fa-caret-down fa-sm"></i></span></h3>
 					
-				<ul class="popup">
-					<li><img class="popup__close" src="assets/icon-x.svg" alt="popup-close"></li>
+				<div class="popup">
+					<img class="popup__close" src="assets/icon-x.svg" alt="popup-close">
+					<ul>
 					<li class="sidebar__item">
 						<a href="#"><span class="sidebar__item-text sidebar__item-text--active">All products</span><span class="sidebar__number">27</span> </a>
 					</li>
@@ -102,14 +103,15 @@
 					<li class="sidebar__item">
 						<a href="#"><span class="sidebar__item-text">Accesories</span><span class="sidebar__number">21</span></a>
 					</li>
-				</ul>			
+				</ul>
+				</div>			
 			</section>
 			
 			<section class="filter sidebar__section">
 				<h3 class="heading medium-size sidebar__heading popup-show"><span class="sidebar__icon"><i class="fas fa-filter fa-xs"></i></span> Filter by</h3>
-				<ul class="popup">
-				<li>
-					<img class="popup__close" src="assets/icon-x.svg" alt="popup-close"></li>
+				<div class="popup">	
+
+					<img class="popup__close" src="assets/icon-x.svg" alt="popup-close">
 
 					<section class="sidebar__subsection price">
 						<h4 class="heading small-size">Price</h4>				
@@ -184,11 +186,13 @@
 									<span class="sidebar__number">17</span>
 								</a>
 							</li>
-						</ul>
 					</section>
-
-				</ul>	
-				<button class="filter__button filter__price-elem">Filter</button>				
+					<button class="filter__button">Filter</button>
+				</div>
+			</section>
+					
+					
+								
 			</section>
 			
 			<section class="sidebar__tags sidebar__section">
@@ -202,7 +206,7 @@
 					<li class="tags__item">Accessories</li>
 				</ul>
 			</section>
-			</aside>
+		</aside>
 		<main class="main">			
 				<p class="text-click main__prev hide">Show previous</p>
 			<h2 class="hide">Products</h2>

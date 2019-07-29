@@ -4,10 +4,14 @@ import { Cart } from "./Cart";
 import { Paginator } from "./Paginator";
 import { getValueRange } from "./filters/getValueRange";
 import { FilterCollection } from "./filters/FilterCollection";
+import togglePopupFilters from "./filters/togglePopupFilters";
 
 let config;
 export default () => {
   const buttonFilter = document.querySelector(".filter__button");
+  const buttonShowPopup = [
+    ...document.querySelectorAll(".popup-show:not(.cart)")
+  ];
   const url = "https://makuchdesign.pl/justyna/sky_planet/ajax.php";
   const mainCart = new Cart();
   const collection = new ProductsCollection(mainCart);
@@ -27,6 +31,11 @@ export default () => {
   mainCart.handleToggleContent();
   window.addEventListener("resize", () => paginator.showCurrentPage());
   window.addEventListener("resize", () => paginator.createPagination());
+
+  buttonShowPopup.forEach(button =>
+    button.addEventListener("click", togglePopupFilters)
+  );
+
   buttonFilter.addEventListener("click", () => {
     paginator.setCurrentPage(1);
     getProducts(config);
