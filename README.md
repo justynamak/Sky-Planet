@@ -10,6 +10,7 @@
 - Check the Cart
 - Remove from Cart
 - Change pages
+- Filter products
 
 #### Technologies used:
 
