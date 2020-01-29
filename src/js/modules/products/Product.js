@@ -103,12 +103,10 @@ class Product {
   }
   generateHtml() {
     const mainGrid = document.querySelector(".main__grid");
-    const clone = document.querySelector("#clone").cloneNode(true);
 
-    clone.removeAttribute("id");
-    clone.removeAttribute("style");
-    const cloneHtml = clone.outerHTML;
-    let cloneReplace = cloneHtml.toString();
+    let htmlArticle =
+      '		<article class="product main__product-{number}" data-id="{id}"><div class="product__bg" id="productImg"><img class="product__img" src="./assets/{image}.jpg" srcset="./assets/{image}.jpg 260w, ./assets/{image}-2x.jpg 400w" sizes="(max-width:1024px 260px, 400px" alt="product-image"><img class="product__img product__img-hover" src="./assets/{image}-hover.jpg" alt="product-image"></div><div class="product__info"><h3 class="heading small-size">{name}</h3><p class="small-size product__price">{price}$</p></div><aside><div class="product__like"><i class="far fa-heart"></i></div><p class="product__bag "><img class="product__bag-icon" src="assets/iconmonstr-shopping-bag-4.svg" alt="icon-add-to-cart"><span class="product__bag-text">Add to Cart</span></p></aside></article>';
+
     const strings = [
       "number",
       "id",
@@ -121,20 +119,20 @@ class Product {
     ];
     const temporaryImage = this.id < 8 ? false : true;
 
-    cloneReplace = this.replaceStringInHtml.call(
+    htmlArticle = this.replaceStringInHtml.call(
       this,
       strings,
-      cloneReplace,
+      htmlArticle,
       temporaryImage
     );
     const insert = document.createElement("article");
 
     mainGrid.appendChild(insert);
-    insert.outerHTML = cloneReplace;
+    insert.outerHTML = htmlArticle;
 
     if (this.number === 3) this.addClassBig();
     this.setSelectors();
-    return cloneReplace;
+    return htmlArticle;
   }
 
   addClassBig() {
