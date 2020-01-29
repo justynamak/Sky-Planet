@@ -1,3 +1,6 @@
+import $ from "jquery";
+import "ion-rangeslider/js/ion.rangeSlider";
+
 const getValueRange = obj => {
   const val1 = document.getElementById("from");
   const val2 = document.getElementById("to");
