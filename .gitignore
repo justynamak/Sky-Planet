@@ -1,3 +1,4 @@
 node_modules
 !getValueRange.js
 !Slider.js
+package-lock.json
