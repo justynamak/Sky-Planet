@@ -45,5 +45,7 @@
     "> 1%",
     "last 2 versions"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0"
+  }
 }
