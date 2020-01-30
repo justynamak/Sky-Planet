@@ -8,7 +8,7 @@ import togglePopupFilters from "./filters/togglePopupFilters";
 
 let config;
 export default () => {
-  const buttonFilter = document.querySelector(".filter__button");
+  const buttonFilter = document.querySelectorAll(".filter__button");
   const buttonShowPopup = [
     ...document.querySelectorAll(".popup-show:not(.cart)")
   ];
@@ -35,10 +35,11 @@ export default () => {
   buttonShowPopup.forEach(button =>
     button.addEventListener("click", togglePopupFilters)
   );
-
-  buttonFilter.addEventListener("click", () => {
-    paginator.setCurrentPage(1);
-    getProducts(config);
+  buttonFilter.forEach(btn => {
+    btn.addEventListener("click", () => {
+      paginator.setCurrentPage(1);
+      getProducts(config);
+    });
   });
 };
 

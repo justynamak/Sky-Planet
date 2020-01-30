@@ -16,7 +16,9 @@ export default function(e) {
   close.addEventListener("click", closePopup);
   window.addEventListener("resize", closePopup);
 
-  if (filterButton) {
+  if (filterButton && popup.classList.contains("active")) {
     filterButton.addEventListener("click", closePopup);
+  } else {
+    filterButton.removeEventListener("click", closePopup);
   }
 }
