@@ -39,11 +39,6 @@ class Filter {
     e.preventDefault();
     const value = e.currentTarget.dataset.value;
     this.toggleItem(value);
-
-    if (!this.value.length) {
-      this.value = ["All products"];
-      this.addActiveClass();
-    }
   }
   toggleItem(value) {
     if (this.checkItemIsAddedToValue(value) && value !== "All products") {
@@ -52,6 +47,7 @@ class Filter {
     } else if (value === "All products") {
       this.clearActiveClasses();
       this.value = ["All products"];
+
       this.addActiveClass();
     } else if (
       this.name === "category" &&
